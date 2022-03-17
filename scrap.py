@@ -5,7 +5,7 @@ import json
 
 
 
-url = "https: // imunizacao-es.saude.gov.br/_search"
+url = "https://imunizacao-es.saude.gov.br/_search"
 
 payload = json.dumps({
   "size": 10000
