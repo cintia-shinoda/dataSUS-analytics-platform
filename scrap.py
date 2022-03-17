@@ -28,4 +28,4 @@ print(response)
 vacina = response.json()
 vacina['hits']['hits']
 df_vacina = pd.json_normalize(vacina['hits']['hits'])
-df_vacina
+print(df_vacina)
