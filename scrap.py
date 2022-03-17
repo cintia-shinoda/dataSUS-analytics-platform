@@ -12,7 +12,7 @@ headers = {
   'Content-Type': 'application/json'
 }
 
-# df_vacina = pd.json_normalize(vacina['hits']['hits'])
+df_vacina = pd.DataFrame()
 
 def paginate(scroll_id, page_number):
   try:
@@ -33,6 +33,7 @@ def paginate(scroll_id, page_number):
 
     next_scroll_id = vacina['_scroll_id']
     hits = vacina['hits']['hits']
+    pd.concat([df_vacina, pd.json_normalize(hits)])
     if len(hits) != 0:
       sleep(3)
       paginate(next_scroll_id, page_number + 1)
