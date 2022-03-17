@@ -26,7 +26,7 @@ print(df_vacina)
 
 # Página 1
 # POST https://imunizacao-es.saude.gov.br/_search?scroll=1m
-# { "size": 10000 }
+# Body: { "size": 10000 }
 # Página 2,3,4...
 # POST https://imunizacao-es.saude.gov.br/_search/scroll
-# { "scroll": "1m", "scroll_id": "scroll id da página anterior" }
+# Body: { "scroll": "1m", "scroll_id": "scroll id da página anterior" }
