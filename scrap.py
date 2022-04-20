@@ -1,8 +1,10 @@
-from time import sleep
+import time
 import requests
 from requests.auth import HTTPBasicAuth
 import pandas as pd
 import json
+from time import sleep
+
 
 url1 = "https://imunizacao-es.saude.gov.br/_search?scroll=1m"
 url2 = "https://imunizacao-es.saude.gov.br/_search/scroll"
@@ -13,6 +15,8 @@ headers = {
 }
 
 df_vacina = pd.DataFrame()
+
+start = time.time()
 
 def paginate(scroll_id, page_number):
   try:
@@ -26,7 +30,7 @@ def paginate(scroll_id, page_number):
       vacina = requests.request("POST", url1, headers=headers, data=payload).json()
     else:
       payload = json.dumps({
-        "scroll": "1m",
+        "scroll": "30m",
         "scroll_id": scroll_id
       })
       vacina = requests.request("POST", url2, headers=headers, data=payload).json()
@@ -40,8 +44,11 @@ def paginate(scroll_id, page_number):
     else:
       print('All pages fetched')
   except:
-    print("An occurred, trying again in 3s")
+    print("An error occurred, trying again in 3s")
     sleep(3)
     paginate(scroll_id, page_number)
+
+end = time.time()
+print((end - start)/60, "minutes")
 
 paginate(None, 0)
