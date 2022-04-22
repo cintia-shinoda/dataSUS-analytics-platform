@@ -4,6 +4,7 @@ from requests.auth import HTTPBasicAuth
 import pandas as pd
 import json
 from time import sleep
+import traceback
 
 
 url1 = "https://imunizacao-es.saude.gov.br/_search?scroll=1m"
@@ -46,7 +47,8 @@ while True:
     else:
       print('All pages fetched')
       break
-  except:
+  except Exception:
+    traceback.print_exc()
     print("An error occurred, trying again in 3s")
     sleep(3)
     # paginate(scroll_id, page_number)
