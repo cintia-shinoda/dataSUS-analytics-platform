@@ -1,2 +1,6 @@
-datasets/*
-!datasets/.gitkeep
+### Deprecated ###
+# datasets/*
+# !datasets/.gitkeep
+
+.DS_Store
+vscode/
